@@ -76,11 +76,10 @@ class LearningAgent(Agent):
         #   For each action, set the Q-value for the state-action pair to 0
         
         state = (waypoint, inputs['oncoming'], inputs['light'], inputs['left'], inputs['right'])
+        # OBS: Remover inputs['right'] pois não é necessário
         if self.learning == True:
             if not state in self.Q:
-                self.Q[state] = {}
-                for action in self.valid_actions:
-                    self.Q[state][action] = 0
+                self.Q[state] = {action: 0.0 for action in self.valid_actions}
 
         return state
 
